@@ -10,6 +10,10 @@
 
     <?php if (isset($load_datatable_libraries)) { ?>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.21/css/dataTables.bootstrap.min.css" integrity="sha512-BMbq2It2D3J17/C7aRklzOODG1IQ3+MHw3ifzBHMBwGO/0yUqYmsStgBjI0z5EYlaDEFnvYV7gNYdD3vFLRKsA==" crossorigin="anonymous" />
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/fixedheader/3.3.1/css/fixedHeader.bootstrap.css"/>
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/searchpanes/2.1.1/css/searchPanes.bootstrap.css"/>
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/select/1.6.0/css/select.bootstrap.css"/>
+
         <link rel="stylesheet" type="text/css" href="styles/custom-datatables.css">
     <?php } ?>
 

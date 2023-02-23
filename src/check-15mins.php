@@ -14,6 +14,6 @@ $row = $query->fetch(PDO::FETCH_ASSOC);
 if (!empty($row['timestamp']) && ($_POST['entry_timestamp'] - $row['timestamp']) < 899
     && !empty($row['charm_id']) && $row['charm_id'] != 2584) {
     error_log("User $_POST[hunter_id_hash]: Tried to submit a hunt faster than 15 minutes=============");
-	recordOffenders();
+	//recordOffenders();
     sendResponse('success', "Thanks for the hunt info!");
 }

@@ -1,0 +1,40 @@
+POST http://localhost:8080/intake.php HTTP/1.1
+Host: localhost:8080
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/109.0
+Accept: */*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br
+Content-Type: application/x-www-form-urlencoded; charset=UTF-8
+Content-Length: 1209
+Origin: https://www.mousehuntgame.com
+Connection: keep-alive
+Sec-Fetch-Dest: empty
+Sec-Fetch-Mode: cors
+Sec-Fetch-Site: cross-site
+DNT: 1
+Sec-GPC: 1
+
+sn=Hitgrab&hg_is_ajax=1&entry_id=151271&entry_timestamp=1674441155&location%5Bname%5D=Twisted+Garden&location%5Bid%5D=5002&shield=true&total_power=24791&total_luck=119&attraction_bonus=28&trap%5Bid%5D=3257&trap%5Bname%5D=Chrome+School+of+Sharks&base%5Bid%5D=2904&base%5Bname%5D=Prestige&cheese%5Bid%5D=1010&cheese%5Bname%5D=Lunaria+Camembert&charm%5Bid%5D=2528&charm%5Bname%5D=Ultimate+Snowball&attracted=1&caught=1&mouse=Camofusion&stage=Not+Pouring&hunt_details%5Bis_lny_hunt%5D=true&hunt_details%5Blny_luck%5D=27&hunt_details%5Bis_lucky_catch%5D=false&hunt_details%5Bhunt_count%5D=1&loot%5B0%5D%5Bamount%5D=1&loot%5B0%5D%5Blucky%5D=false&loot%5B0%5D%5Bid%5D=1990&loot%5B0%5D%5Bname%5D=Orange+Winter+Hunt+Gift+Box&loot%5B0%5D%5Bplural_name%5D=&loot%5B1%5D%5Bamount%5D=1&loot%5B1%5D%5Blucky%5D=false&loot%5B1%5D%5Bid%5D=990&loot%5B1%5D%5Bname%5D=Graveblossom+Petal&loot%5B1%5D%5Bplural_name%5D=&loot%5B2%5D%5Bamount%5D=1&loot%5B2%5D%5Blucky%5D=false&loot%5B2%5D%5Bid%5D=979&loot%5B2%5D%5Bname%5D=Ber+Essence&loot%5B2%5D%5Bplural_name%5D=&uuid=1&hunter_id_hash=6acf4a08a18f9772e091dfa4921160f3f890d728d52905f66633e6c1a67657ecdd21c346fa979c8a2df0657e516d8662f2c2044a0cbe7e458241e794bda0c236&extension_version=0
+
+# {
+#     "name": "sample",
+#     "time": "Wed, 21 Oct 2015 18:27:50 GMT"
+# }
+
+# POST http://localhost:8080/uuid.php HTTP/1.1
+# Host: localhost:8080
+# User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/109.0
+# Accept: */*
+# Accept-Language: en-US,en;q=0.5
+# Accept-Encoding: gzip, deflate, br
+# Content-Type: application/x-www-form-urlencoded; charset=UTF-8
+# Content-Length: 214
+# Origin: https://www.mousehuntgame.com
+# Connection: keep-alive
+# Sec-Fetch-Dest: empty
+# Sec-Fetch-Mode: cors
+# Sec-Fetch-Site: cross-site
+# DNT: 1
+# Sec-GPC: 1
+
+# sn=Hitgrab&hg_is_ajax=1&hunter_id_hash=6acf4a08a18f9772e091dfa4921160f3f890d728d52905f66633e6c1a67657ecdd21c346fa979c8a2df0657e516d8662f2c2044a0cbe7e458241e794bda0c236&entry_timestamp=1674439821&extension_version=0

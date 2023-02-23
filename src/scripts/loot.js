@@ -91,50 +91,74 @@ $(function() {
 
     function renderResultsTable(data) {
         var show_per_hunt = $('#rate_per_hunt').is(':checked');
-        var per_hunt_catch = '<th>Qty / Catch</th><th>Catches</th>'; // Per catch by default
-        if (show_per_hunt) {
-            per_hunt_catch = '<th>Qty / Hunt</th><th>Hunts</th>';
-        }
-        var final_html = '<table id="results_table" class="table table-striped table-hover" style="width:100%"><thead>'
-            + '<tr><th>Location</th><th>Stage</th><th>Cheese</th>' + per_hunt_catch + '<th>Drop Chance</th>'
-            + '<th title="95% CI Margin of Error for Drop Chance">± Error</th><th>Qty Range</th></tr></thead><tbody>';
+        var final_html = '<table id="results_table" class="table table-striped table-hover table-bordered" style="width:100%" />';
 
         var all_stages = '';
+
+        var dataSet = []
         data.forEach(function(row) {
             var stage = (row.stage ? row.stage : '');
             all_stages += stage;
-            final_html += '<tr><td>' + row.location + '</td><td>' + stage + '</td><td>' + row.cheese + '</td><td>';
 
-            if (show_per_hunt) {
-                final_html += parseFloat(row.total_drops / row.total_hunts).toPrecision(3) + '</td><td>' + row.total_hunts + '</td>';
-            } else {
-                final_html += parseFloat(row.total_drops / row.total_catches).toPrecision(3) + '</td><td>' + row.total_catches + '</td>'
-            }
+            const numEvents = show_per_hunt ? row.total_hunts : row.total_catches;
+            const quantityPerEvent = parseFloat(row.total_drops / numEvents).toPrecision(3);
 
             var drop_chance = parseFloat(row.drop_pct / 100);
-            var moe = 1.96 * Math.sqrt(drop_chance * (1 - drop_chance) / row.total_catches) * 100;
-            final_html += '<td>' + parseFloat(row.drop_pct).toFixed(2) + '%</td><td>' + moe.toFixed(2) + '%</td><td>' + row.min_amt + ' - ' + row.max_amt + '</td></tr>';
+            var moe = (1.96 * Math.sqrt(drop_chance * (1 - drop_chance) / row.total_catches) * 100).toFixed(2);
+            drop_chance = (drop_chance * 100).toFixed(2);
+            const range = `${row.min_amt} - ${row.max_amt}`;
+
+            dataSet.push([row.location, stage, row.cheese, quantityPerEvent, numEvents, `${drop_chance}%`, `${moe}%`, range]);
         })
 
-        final_html += '</tbody></table>';
         $("#results").html(final_html);
-        $('#results_table').DataTable({
-            "paging": false,
-            "searching": false,
-            "info": false,
-            "order": [[3, 'desc']],
-            "columnDefs": [
+        var table = $('#results_table').DataTable({
+            data: dataSet,
+            dom: 'Pfrtip',
+            paging: false,
+            searching: false,
+            fixedHeader: true,
+            searchPanes: {
+                initCollapsed: true
+            },
+            info: false,
+            order: [[3, 'desc']],
+            columns: [
+                { title: 'Location' },
+                { title: 'Stage' },
+                { title: 'Cheese' },
+                { title: show_per_hunt ? 'Qty / Hunt' : 'Qty / Catch' },
+                { title: show_per_hunt ? 'Hunts' : 'Catches' },
+                { title: 'Drop Chance', name: '95% CI Margin of Error for Drop Chance' },
+                { title: '± Error' },
+                { title: 'Qty Range' },
+            ],
+            columnDefs: [
                 {
                     "targets": [1],
                     "visible": (all_stages.length === 0 ? false : true)
                 }
-            ]
+            ],
+            // initComplete: () => {
+            //     this.api()
+            //         .columns()
+            //         .every(() => {
+            //             var that = this;
+            //             $('input', this.footer()).on('keyup change clear', () => {
+            //                 if (that.search() !== this.value) {
+            //                     that.search(this.value).draw();
+            //                 }
+            //             });
+            //         });
+            // },
         });
 
-        var table = $('#results_table').DataTable();
-        table.columns().iterator('column', function(ctx, idx) {
-            $(table.column(idx).header()).append('<span class="sort-icon"/>');
-        });
+        // $.fn.dataTable.SearchPanes(table, {});
+        // table.searchPanes.container().prependTo(table.table().container());
+        // table.searchPanes.resizePanes();
+
+        // Set 7th table header title for MoE
+        $('#results_table th:eq(6)').attr('title', '95% CI Margin of Error for Drop Chance');
 
         $("#loader").css("display", "none");
     }
