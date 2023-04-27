@@ -6,7 +6,7 @@ header("Access-Control-Allow-Origin: $http_origin");
 
 if (!$_REQUEST['uuid']) {
     echo "1";
-    die();
+    return;
 }
 
 require_once "check-cors.php";
@@ -41,9 +41,9 @@ require_once "check-cors.php";
 // } else {
 //     // Creating uuid
     // But first: CORS check
-    define('not_direct_access', TRUE);
-    require_once "check-cors.php";
-    
+    // define('not_direct_access', TRUE);
+    // require_once "check-cors.php";
+
 //     $myuuid = Uuid::uuid4();
 //     $myuuid = $myuuid->toString();
 //     $redis->set($myuuid,time());

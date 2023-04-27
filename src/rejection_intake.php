@@ -6,7 +6,7 @@ require_once "uuid.php";
 require_once "check-ban.php";
 require_once "check-time.php";
 require_once "config.php";
-require_once "check-version.php";
+//require_once "check-version.php";
 require_once "db-connect.php";
 require_once "send_response.php";
 
@@ -21,7 +21,7 @@ recordRejectionsInFile();
 recordRejectionsInDB();
 sendResponse('success', "Thanks for the hunt info!");
 
-function recordRejectionsInFile($limit = 250) {
+function recordRejectionsInFile($limit = 5) {
     $timestamp = $_POST['entry_timestamp'];
     $pre = $_POST['pre'];
     $post = $_POST['post'];
