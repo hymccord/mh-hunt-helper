@@ -3,10 +3,10 @@
 require_once "check-cors.php";
 
 // For dev env we can just replace all that with few lines:
-// if (!$_REQUEST['uuid']) {
-//     echo "1";
-// }
-// return;
+if (!$_REQUEST['uuid']) {
+    echo "1";
+}
+return;
 
 $uuid_timeout = 20;
 
